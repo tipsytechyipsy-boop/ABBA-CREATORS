@@ -1,0 +1,88 @@
+/* =========================================================
+   ABBA Creators — animated logo preloader
+   Shown once per browser session (see preloader.js)
+   ========================================================= */
+html.preload body { overflow: hidden; }
+/* hold headline animations until the loader has gone */
+html.preload .split .w { opacity: 0 !important; transform: translateY(.55em) rotate(3deg) !important; transition: none !important; }
+
+.loader {
+  position: fixed; inset: 0; z-index: 2000;
+  display: grid; place-items: center; align-content: center; gap: 1.4rem;
+  background: var(--bg, #fbfcf8);
+  background-image: radial-gradient(circle, #d6ddd2 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
+}
+.loader.out { transition: clip-path .75s cubic-bezier(.7,0,.3,1); clip-path: circle(0 at var(--cx, 50%) var(--cy, 50%)); }
+
+.loader-logo { width: min(560px, 88vw); height: auto; overflow: visible; }
+.loader-meta {
+  display: flex; align-items: center; gap: 1rem;
+  font: 500 .85rem "JetBrains Mono", ui-monospace, monospace; color: #55627a;
+  opacity: 0; animation: lp-fade .4s ease .2s forwards;
+}
+.loader-bar { width: 160px; height: 4px; border-radius: 4px; background: #e3e8df; overflow: hidden; }
+.loader-bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #22b43a, #f6c623); transform-origin: left; transform: scaleX(var(--lp, 0)); }
+.loader.out .loader-logo, .loader.out .loader-meta { transition: opacity .35s, transform .7s cubic-bezier(.7,0,.3,1); opacity: 0; }
+
+/* --- frame: outline draws, then fills --- */
+.lg-frame { transform-box: fill-box; transform-origin: center; animation: lp-pop .6s cubic-bezier(.3,1.5,.5,1) .55s both; }
+.lg-outline { fill: none; stroke: #22b43a; stroke-width: 6; stroke-dasharray: 1; stroke-dashoffset: 1; animation: lp-draw .7s cubic-bezier(.6,0,.3,1) forwards; }
+.lg-fill { opacity: 0; animation: lp-fade .3s ease .55s forwards; }
+.lg-dot { transform-box: fill-box; transform-origin: center; transform: scale(0); animation: lp-scale .4s cubic-bezier(.3,1.8,.5,1) forwards; }
+.lg-dot:nth-of-type(1) { animation-delay: .9s; }
+.lg-dot:nth-of-type(2) { animation-delay: 1s; }
+.lg-dot:nth-of-type(3) { animation-delay: 1.1s; }
+
+/* --- </> draws in --- */
+.lg-code path { fill: none; stroke: #0e1f3d; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: lp-draw .35s ease forwards; }
+.lg-code path:nth-child(1) { animation-delay: 1.55s; }
+.lg-code path:nth-child(2) { animation-delay: 1.7s; }
+.lg-code path:nth-child(3) { animation-delay: 1.85s; }
+
+/* --- ABBA letters rise, CREATORS tracks in --- */
+.lg-abba { font: 900 112px "Fraunces", Georgia, serif; fill: #0e1f3d; }
+.lg-abba text { transform: translateY(120px); animation: lp-rise .6s cubic-bezier(.2,.9,.3,1.15) forwards; }
+.lg-abba text:nth-child(1) { animation-delay: 1.05s; }
+.lg-abba text:nth-child(2) { animation-delay: 1.13s; }
+.lg-abba text:nth-child(3) { animation-delay: 1.21s; }
+.lg-abba text:nth-child(4) { animation-delay: 1.29s; }
+.lg-creators { font: 700 31px "Outfit", system-ui, sans-serif; fill: #0e1f3d; letter-spacing: 13px; opacity: 0; animation: lp-track .8s cubic-bezier(.2,.8,.2,1) 1.45s forwards; }
+
+/* --- price tag drops in on its string and swings --- */
+.lg-tag { transform: translateY(-260px); animation: lp-drop .7s cubic-bezier(.3,1.4,.5,1) 1.7s forwards; }
+.lg-swing { transform-box: fill-box; transform-origin: 50% 12%; animation: lp-swing 2.4s ease-in-out 2.2s infinite; rotate: -24deg; }
+.lg-tag-body { fill: #fff; stroke: #f6c623; stroke-width: 9; stroke-linejoin: round; }
+.lg-tag-hole { fill: none; stroke: #f6c623; stroke-width: 6; }
+.lg-bolt { fill: #0e1f3d; }
+.lg-string { fill: none; stroke: #f6c623; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: lp-draw .4s ease 2.1s forwards; }
+
+/* --- cursor flies in and clicks --- */
+.lg-cursor { transform: translate(260px, 200px) rotate(25deg); opacity: 0; animation: lp-fly .65s cubic-bezier(.3,0,.2,1) 2.05s forwards; }
+.lg-cursor path { fill: #fff; stroke: #0e1f3d; stroke-width: 6; stroke-linejoin: round; }
+.lg-cursor-in { transform-box: fill-box; transform-origin: 0 0; animation: lp-click .25s ease 2.75s; }
+.lg-ticks line { stroke: #22b43a; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: lp-draw .25s ease-out 2.85s forwards; }
+.lg-ticks line:nth-child(2) { animation-delay: 2.92s; }
+
+@keyframes lp-draw  { to { stroke-dashoffset: 0; } }
+@keyframes lp-fade  { to { opacity: 1; } }
+@keyframes lp-scale { to { transform: scale(1); } }
+@keyframes lp-pop   { 0% { transform: scale(1); } 40% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes lp-rise  { to { transform: translateY(0); } }
+@keyframes lp-track { from { opacity: 0; letter-spacing: 40px; } to { opacity: 1; letter-spacing: 13px; } }
+@keyframes lp-drop  { to { transform: translateY(0); } }
+@keyframes lp-swing { 0%, 100% { rotate: -24deg; } 50% { rotate: -8deg; } }
+@keyframes lp-fly   { to { transform: translate(0, 0) rotate(0); opacity: 1; } }
+@keyframes lp-click { 50% { transform: scale(.82); } }
+
+/* nav logo: little pop when the loader hands over, then an idle wiggle */
+.brand img.landed { animation: logo-land .6s cubic-bezier(.3,1.8,.5,1); }
+@keyframes logo-land { from { transform: scale(.4) rotate(-30deg); } }
+.brand img { animation: logo-idle 7s ease-in-out 4s infinite; }
+@keyframes logo-idle { 0%, 88%, 100% { rotate: 0deg; } 91% { rotate: -12deg; } 94% { rotate: 9deg; } 97% { rotate: -4deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .loader { display: none; }
+  .brand img { animation: none; }
+}
