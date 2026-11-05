@@ -9,18 +9,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="fx.css">
-<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="fx.css?v=4">
+<link rel="stylesheet" href="preloader.css?v=4">
 <script>try{if(!sessionStorage.getItem("abba-loaded")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){var h=document.documentElement;h.classList.add("preload");setTimeout(function(){h.classList.remove("preload");var l=document.querySelector(".loader");if(l)l.remove()},8000)}}catch(e){}</script>
 </head>
 <body>
-<script src="preloader.js"></script>
+<script src="preloader.js?v=4"></script>
 
 <header class="nav" id="top">
   <a href="index.html" class="brand" aria-label="ABBA Creators home">
-    <img src="assets/logo.webp" alt="" width="44" height="44">
-    <span><b>ABBA</b> Creators</span>
+    <svg class="brand-logo" width="110" height="54" viewBox="-12 50 632 314" role="img" aria-label="ABBA Creators">
+      <g transform="rotate(-3 320 205)">
+        <path class="bl-frame" fill-rule="evenodd" d="M126 70h388a46 46 0 0 1 46 46v178a46 46 0 0 1-46 46H126a46 46 0 0 1-46-46V116a46 46 0 0 1 46-46zM132 124a28 28 0 0 0-28 28v136a28 28 0 0 0 28 28h376a28 28 0 0 0 28-28V152a28 28 0 0 0-28-28z"/>
+        <path class="bl-panel" d="M132 124h376a28 28 0 0 1 28 28v136a28 28 0 0 1-28 28H132a28 28 0 0 1-28-28V152a28 28 0 0 1 28-28z"/>
+        <circle class="bl-dot" cx="150" cy="97" r="10"/><circle class="bl-dot" cx="184" cy="97" r="10"/><circle class="bl-dot" cx="218" cy="97" r="10"/>
+        <path class="bl-code" d="M462 140 L444 154 L462 168 M488 134 L474 174 M500 140 L518 154 L500 168"/>
+        <text class="bl-abba" x="320" y="262" text-anchor="middle">ABBA</text>
+        <text class="bl-creators" x="326" y="304" text-anchor="middle">CREATORS</text>
+      </g>
+      <path class="bl-string" d="M34 130 C 40 92, 84 70, 122 72"/>
+      <g class="bl-tag" transform="translate(4 112)">
+        <path class="bl-tag-body" d="M30 0 L62 28 Q66 32 66 38 V112 Q66 120 58 120 H2 Q-6 120 -6 112 V38 Q-6 32 -2 28 Z"/>
+        <circle class="bl-tag-hole" cx="30" cy="24" r="8"/>
+        <path class="bl-bolt" d="M36 48 L18 80 H31 L25 104 L45 70 H32 Z"/>
+      </g>
+      <g transform="translate(546 292)"><path class="bl-cursor" d="M0 0 L0 58 L15 44 L26 68 L38 62 L27 39 L47 39 Z"/></g>
+      <path class="bl-ticks" d="M560 268 L572 244 M578 282 L602 268"/>
+    </svg>
   </a>
   <nav class="nav-links" id="nav-links" aria-label="Main">
     <a href="index.html">Home</a>
@@ -77,7 +93,24 @@
 
 <footer class="footer">
   <div class="footer-top">
-    <div class="brand"><img src="assets/logo.webp" alt="" width="36" height="36"><span><b>ABBA</b> Creators</span></div>
+    <a href="index.html" class="brand brand-foot" aria-label="ABBA Creators home"><svg class="brand-logo" width="110" height="54" viewBox="-12 50 632 314" aria-hidden="true">
+      <g transform="rotate(-3 320 205)">
+        <path class="bl-frame" fill-rule="evenodd" d="M126 70h388a46 46 0 0 1 46 46v178a46 46 0 0 1-46 46H126a46 46 0 0 1-46-46V116a46 46 0 0 1 46-46zM132 124a28 28 0 0 0-28 28v136a28 28 0 0 0 28 28h376a28 28 0 0 0 28-28V152a28 28 0 0 0-28-28z"/>
+        <path class="bl-panel" d="M132 124h376a28 28 0 0 1 28 28v136a28 28 0 0 1-28 28H132a28 28 0 0 1-28-28V152a28 28 0 0 1 28-28z"/>
+        <circle class="bl-dot" cx="150" cy="97" r="10"/><circle class="bl-dot" cx="184" cy="97" r="10"/><circle class="bl-dot" cx="218" cy="97" r="10"/>
+        <path class="bl-code" d="M462 140 L444 154 L462 168 M488 134 L474 174 M500 140 L518 154 L500 168"/>
+        <text class="bl-abba" x="320" y="262" text-anchor="middle">ABBA</text>
+        <text class="bl-creators" x="326" y="304" text-anchor="middle">CREATORS</text>
+      </g>
+      <path class="bl-string" d="M34 130 C 40 92, 84 70, 122 72"/>
+      <g class="bl-tag" transform="translate(4 112)">
+        <path class="bl-tag-body" d="M30 0 L62 28 Q66 32 66 38 V112 Q66 120 58 120 H2 Q-6 120 -6 112 V38 Q-6 32 -2 28 Z"/>
+        <circle class="bl-tag-hole" cx="30" cy="24" r="8"/>
+        <path class="bl-bolt" d="M36 48 L18 80 H31 L25 104 L45 70 H32 Z"/>
+      </g>
+      <g transform="translate(546 292)"><path class="bl-cursor" d="M0 0 L0 58 L15 44 L26 68 L38 62 L27 39 L47 39 Z"/></g>
+      <path class="bl-ticks" d="M560 268 L572 244 M578 282 L602 268"/>
+    </svg></a>
     <nav class="footer-links" aria-label="Footer">
       <a href="index.html">Home</a><a href="services.html">Services</a><a href="packages.html">Packages</a><a href="about.html">About</a><a href="contact.html">Contact</a>
     </nav>
@@ -88,7 +121,7 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
-<script src="fx.js"></script>
+<script src="script.js?v=4"></script>
+<script src="fx.js?v=4"></script>
 </body>
 </html>

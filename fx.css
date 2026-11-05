@@ -146,8 +146,6 @@
 @keyframes shine { 0%, 70% { left: -60%; } 100% { left: 130%; } }
 
 /* ---------- logo wiggle ---------- */
-.brand img { transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
-.brand:hover img { transform: rotate(-14deg) scale(1.1); }
 
 /* ---------- marquee: second row going the other way ---------- */
 .marquee-track.rev { animation-direction: reverse; animation-duration: 38s; margin-top: .4rem; opacity: .45; font-size: 1.1rem; }

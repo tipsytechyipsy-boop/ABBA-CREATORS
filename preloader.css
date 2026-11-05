@@ -76,13 +76,10 @@ html.preload .split .w { opacity: 0 !important; transform: translateY(.55em) rot
 @keyframes lp-fly   { to { transform: translate(0, 0) rotate(0); opacity: 1; } }
 @keyframes lp-click { 50% { transform: scale(.82); } }
 
-/* nav logo: little pop when the loader hands over, then an idle wiggle */
-.brand img.landed { animation: logo-land .6s cubic-bezier(.3,1.8,.5,1); }
+/* nav logo: little pop when the loader hands over, logo idles via styles.css */
+.brand-logo.landed { animation: logo-land .6s cubic-bezier(.3,1.8,.5,1); }
 @keyframes logo-land { from { transform: scale(.4) rotate(-30deg); } }
-.brand img { animation: logo-idle 7s ease-in-out 4s infinite; }
-@keyframes logo-idle { 0%, 88%, 100% { rotate: 0deg; } 91% { rotate: -12deg; } 94% { rotate: 9deg; } 97% { rotate: -4deg; } }
 
 @media (prefers-reduced-motion: reduce) {
   .loader { display: none; }
-  .brand img { animation: none; }
 }

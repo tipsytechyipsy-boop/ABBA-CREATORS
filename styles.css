@@ -66,8 +66,6 @@ h1, h2 { font-family: var(--display); font-weight: 900; letter-spacing: -.02em; 
 }
 .nav.scrolled { border-bottom-color: var(--line); }
 .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-size: 1.1rem; }
-.brand img { border-radius: 50%; }
-.brand b { font-family: var(--display); font-weight: 900; }
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a { text-decoration: none; font-weight: 500; color: var(--muted); position: relative; }
 .nav-links a::after {
@@ -486,3 +484,31 @@ h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
 .contact-inner { padding-top: clamp(3.5rem, 8vw, 6rem); }
 .contact-title { font-size: clamp(2.3rem, 5vw, 3.6rem); }
 @media (max-width: 960px) { .nav-toggle { display: grid; } }
+
+/* ---------- inline logo (nav + footer) ---------- */
+.brand-logo { display: block; height: 64px; width: auto; overflow: visible; }
+.brand-foot .brand-logo { height: 56px; }
+.bl-frame { fill: var(--green); }
+.bl-panel { fill: #fff; }
+.bl-dot { fill: #fff; }
+.bl-code, .bl-ticks { fill: none; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.bl-code { stroke: var(--navy); }
+.bl-ticks { stroke: var(--green); }
+.bl-abba { font: 900 112px var(--display); fill: var(--navy); }
+.bl-creators { font: 700 31px var(--body); fill: var(--navy); letter-spacing: 13px; }
+.bl-string { fill: none; stroke: var(--yellow); stroke-width: 7; stroke-linecap: round; }
+.bl-tag-body { fill: #fff; stroke: var(--yellow); stroke-width: 10; stroke-linejoin: round; }
+.bl-tag-hole { fill: none; stroke: var(--yellow); stroke-width: 7; }
+.bl-bolt { fill: var(--navy); }
+.bl-cursor { fill: #fff; stroke: var(--navy); stroke-width: 7; stroke-linejoin: round; }
+/* idle life: tag swings, cursor clicks now and then */
+.bl-tag { transform-box: fill-box; transform-origin: 50% 12%; rotate: -24deg; animation: bl-swing 3s ease-in-out infinite; }
+@keyframes bl-swing { 0%, 100% { rotate: -26deg; } 50% { rotate: -12deg; } }
+.bl-cursor { transform-box: fill-box; transform-origin: 0 0; animation: bl-click 4s ease-in-out infinite; }
+@keyframes bl-click { 0%, 80%, 100% { transform: none; } 85% { transform: scale(.8); } }
+.bl-ticks { animation: bl-ticks 4s ease-in-out infinite; }
+@keyframes bl-ticks { 0%, 82% { opacity: 0; } 86%, 96% { opacity: 1; } 100% { opacity: 0; } }
+.brand-logo { transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+.brand:hover .brand-logo { transform: rotate(-3deg) scale(1.06); }
+.brand:hover .bl-tag { animation-duration: .8s; }
+@media (max-width: 640px) { .brand-logo { height: 52px; } }

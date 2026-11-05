@@ -73,7 +73,7 @@
 
   function finish() {
     // close the loader into the nav logo, so the logo "lands" there
-    const target = document.querySelector(".nav .brand img");
+    const target = document.querySelector(".nav .brand-logo");
     if (target) {
       const r = target.getBoundingClientRect();
       loader.style.setProperty("--cx", r.left + r.width / 2 + "px");
