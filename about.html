@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — ABBA Creators</title>
+<meta name="description" content="ABBA Creators designs and builds fast, good-looking websites for businesses of every size.">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="fx.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a href="index.html" class="brand" aria-label="ABBA Creators home">
+    <img src="assets/logo.webp" alt="" width="44" height="44">
+    <span><b>ABBA</b> Creators</span>
+  </a>
+  <nav class="nav-links" id="nav-links" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="packages.html">Packages</a>
+    <a href="about.html" aria-current="page">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="contact.html" class="btn btn-small nav-cta">Start a project</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+</header>
+
+<main>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <p class="eyebrow"><span class="mono">&lt;/&gt;</span> About us</p>
+    <h1>Small studio. <span class="hl">Big</span> results.</h1>
+    <p class="lead">ABBA Creators builds fast, good-looking websites for small businesses, creators and brands.</p>
+  </section>
+  <section class="section founder" id="founder">
+    <div class="founder-card reveal">
+      <div class="founder-avatar" aria-hidden="true">
+        <span>BF</span>
+        <svg class="founder-cursor" viewBox="0 0 40 40"><path d="M6 4 L6 32 L13 25 L18 36 L23 34 L18 23 L28 23 Z"/></svg>
+      </div>
+      <div class="founder-copy">
+        <p class="eyebrow">Meet the founder</p>
+        <h2>Benniton Fernandes</h2>
+        <p class="role mono">Founder, ABBA Creators</p>
+        <p>ABBA Creators was started by Benniton Fernandes to give small businesses and creators websites that look great, load fast and actually bring in customers — without the agency price tag or the tech headaches. When you work with us, you work directly with the founder.</p>
+        <a href="contact.html" class="btn">Talk to Benniton</a>
+      </div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="band-inner">
+      <div class="stat reveal"><b data-count="7">0</b><span>days to launch, typical</span></div>
+      <div class="stat reveal"><b data-count="100" data-suffix="%">0</b><span>mobile responsive</span></div>
+      <div class="stat reveal"><b data-count="90" data-suffix="+">0</b><span>Lighthouse speed target</span></div>
+      <div class="stat reveal"><b data-count="24" data-suffix="h">0</b><span>reply time, max</span></div>
+    </div>
+  </section>
+  <section class="section" id="process">
+    <div class="section-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>From idea to live in four steps.</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal"><span class="num mono">01</span><h3>Chat</h3><p>Tell us about your business, your goals and the sites you love.</p></li>
+      <li class="reveal"><span class="num mono">02</span><h3>Design</h3><p>We mock up your homepage. You give feedback until it feels right.</p></li>
+      <li class="reveal"><span class="num mono">03</span><h3>Build</h3><p>We code every page, wire up forms and payments, and test on every device.</p></li>
+      <li class="reveal"><span class="num mono">04</span><h3>Launch</h3><p>Your site goes live on your domain. We stick around for tweaks and support.</p></li>
+    </ol>
+  </section>
+  <!-- CTA -->
+  <section class="section cta-wrap">
+    <div class="cta reveal">
+      <h2>Ready to build something that <span class="hl">clicks</span>?</h2>
+      <p>Tell us what you need. Free quote within 24 hours.</p>
+      <a href="contact.html" class="btn">Start a project</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="brand"><img src="assets/logo.webp" alt="" width="36" height="36"><span><b>ABBA</b> Creators</span></div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="packages.html">Packages</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> ABBA Creators · Founded by Benniton Fernandes</p>
+    <a href="#top" class="mono">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="fx.js"></script>
+</body>
+</html>
