@@ -130,7 +130,7 @@
 
   /* contact page: preselect plan from ?plan=Business, send via WhatsApp or email,
      and save a copy of every message to Google Sheets (see SETUP-GOOGLE-SHEETS.md) */
-  const SHEET_URL = ""; // ← paste your Apps Script web app URL here (ends in /exec)
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxm-kyvqr1gWE-nxcgmFFu9foiXsYAOgiWggoyh-R9t10SE1jrXp6vEpi1LKFhgY9U3qg/exec"; // ← paste your Apps Script web app URL here (ends in /exec)
   const saveToSheet = (fields) => {
     if (!SHEET_URL) return;
     try {
