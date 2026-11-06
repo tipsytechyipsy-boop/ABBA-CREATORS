@@ -71,7 +71,7 @@ function logNewEmails() {
         m.getDate(),
         m.getFrom(),
         m.getSubject(),
-        clean_(m.getPlainBody(), 500),
+        preview_(m.getPlainBody(), 300),
         'https://mail.google.com/mail/u/0/#inbox/' + m.getId(),
         'New',
       ]);
@@ -82,6 +82,17 @@ function logNewEmails() {
   if (rows.length) {
     sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, rows[0].length).setValues(rows);
   }
+  keepRowsShort_(sheet);
+}
+
+// Run once to clean up Preview cells saved before the preview fix.
+function tidyEmailsTab() {
+  const sheet = tab_(EMAIL_TAB, ['Received', 'From', 'Subject', 'Preview', 'Open in Gmail', 'Status']);
+  const n = sheet.getLastRow() - 1;
+  if (n < 1) return;
+  const range = sheet.getRange(2, 4, n, 1);
+  range.setValues(range.getValues().map((r) => [preview_(r[0], 300)]));
+  keepRowsShort_(sheet);
 }
 
 // Run this ONCE from the Apps Script editor. It makes logNewEmails() run every 5 minutes.
@@ -105,6 +116,23 @@ function tab_(name, headers) {
     sheet.setFrozenRows(1);
   }
   return sheet;
+}
+
+// Turn an email body into a short one-line preview (drops HTML leftovers and links).
+function preview_(text, max) {
+  return clean_(String(text || '')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/\s+/g, ' '), max);
+}
+
+// One line per row: long text is clipped in the cell (click a cell to read it all).
+function keepRowsShort_(sheet) {
+  const rows = sheet.getLastRow();
+  if (rows < 2) return;
+  sheet.getRange(2, 1, rows - 1, sheet.getLastColumn()).setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+  sheet.setRowHeights(2, rows - 1, 21);
 }
 
 function clean_(value, max) {
