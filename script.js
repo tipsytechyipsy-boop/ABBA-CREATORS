@@ -128,7 +128,7 @@
     requestAnimationFrame(tick);
   }
 
-  /* contact page: preselect plan from ?plan=Business, send via email app */
+  /* contact page: preselect plan from ?plan=Business, send via WhatsApp or email */
   const form = $("contact-form");
   if (form) {
     const plan = new URLSearchParams(location.search).get("plan");
@@ -137,10 +137,24 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const d = new FormData(form);
-      const subject = `New project: ${d.get("plan")} — ${d.get("name")}`;
-      const body = `${d.get("message")}\n\nFrom: ${d.get("name")} (${d.get("email")})`;
-      location.href = `mailto:hello@abbacreators.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      $("form-note").textContent = "Opening your email app… we'll reply within 24h!";
+      const name = d.get("name"), email = d.get("email"), need = d.get("plan"), msg = d.get("message");
+      if (e.submitter && e.submitter.value === "email") {
+        const subject = `New project: ${need} — ${name}`;
+        const body = `${msg}
+
+From: ${name}${email ? ` (${email})` : ""}`;
+        location.href = `mailto:bennitonf@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        $("form-note").textContent = "Opening your email app… we'll reply within 24h!";
+      } else {
+        const text = `Hi ABBA Creators! I'm ${name}.
+I need: ${need}
+
+${msg}${email ? `
+
+Email: ${email}` : ""}`;
+        window.open(`https://wa.me/917030955722?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+        $("form-note").textContent = "Opening WhatsApp with your message ready to send…";
+      }
     });
   }
 
