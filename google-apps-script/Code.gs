@@ -14,7 +14,10 @@
 const WEBSITE_TAB = 'Website messages';
 const EMAIL_TAB = 'Emails';
 const LOGGED_LABEL = 'Saved to Sheet';   // Gmail label added to emails already copied
-const EMAIL_SEARCH = 'in:inbox newer_than:7d -category:promotions -category:social';
+const EMAIL_SEARCH = 'in:inbox newer_than:7d -category:promotions -category:social -category:updates -category:forums';
+
+// Senders that are machines, not people. Emails from these are skipped.
+const AUTOMATED_SENDER = /(no[-_.]?reply|do[-_.]?not[-_.]?reply|notifications?@|notify@|alerts?@|mailer-daemon|postmaster|bounce|newsletter|updates?@|info@accounts\.|calendar-notification|@([a-z0-9-]+\.)*(google|github|githubusercontent|facebookmail|linkedin|anthropic|openai|mobbin)\.com$)/i;
 
 /* ---------------- website form → sheet ---------------- */
 
@@ -66,7 +69,9 @@ function logNewEmails() {
 
   threads.forEach((thread) => {
     thread.getMessages().forEach((m) => {
-      if (m.getFrom().toLowerCase().indexOf(me) !== -1) return; // skip emails you sent
+      const from = m.getFrom();
+      if (from.toLowerCase().indexOf(me) !== -1) return; // skip emails you sent
+      if (isAutomated_(from)) return;                     // skip no-reply / notification emails
       rows.push([
         m.getDate(),
         m.getFrom(),
@@ -95,6 +100,17 @@ function tidyEmailsTab() {
   keepRowsShort_(sheet);
 }
 
+// Run once to delete rows from automated senders that were saved before the filter existed.
+function removeAutomatedRows() {
+  const sheet = tab_(EMAIL_TAB, ['Received', 'From', 'Subject', 'Preview', 'Open in Gmail', 'Status']);
+  const n = sheet.getLastRow() - 1;
+  if (n < 1) return;
+  const from = sheet.getRange(2, 2, n, 1).getValues();
+  for (let i = n - 1; i >= 0; i--) {          // bottom-up so row numbers stay valid
+    if (isAutomated_(from[i][0])) sheet.deleteRow(i + 2);
+  }
+}
+
 // Run this ONCE from the Apps Script editor. It makes logNewEmails() run every 5 minutes.
 function setupEmailTrigger() {
   ScriptApp.getProjectTriggers()
@@ -116,6 +132,12 @@ function tab_(name, headers) {
     sheet.setFrozenRows(1);
   }
   return sheet;
+}
+
+function isAutomated_(from) {
+  const addr = String(from || '').toLowerCase();
+  const email = (addr.match(/<([^>]+)>/) || [, addr])[1].trim();
+  return AUTOMATED_SENDER.test(email);
 }
 
 // Turn an email body into a short one-line preview (drops HTML leftovers and links).
