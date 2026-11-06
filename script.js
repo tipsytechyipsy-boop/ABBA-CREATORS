@@ -128,7 +128,15 @@
     requestAnimationFrame(tick);
   }
 
-  /* contact page: preselect plan from ?plan=Business, send via WhatsApp or email */
+  /* contact page: preselect plan from ?plan=Business, send via WhatsApp or email,
+     and save a copy of every message to Google Sheets (see SETUP-GOOGLE-SHEETS.md) */
+  const SHEET_URL = ""; // ← paste your Apps Script web app URL here (ends in /exec)
+  const saveToSheet = (fields) => {
+    if (!SHEET_URL) return;
+    try {
+      fetch(SHEET_URL, { method: "POST", mode: "no-cors", keepalive: true, body: new URLSearchParams(fields) });
+    } catch (err) { /* never block the visitor if saving fails */ }
+  };
   const form = $("contact-form");
   if (form) {
     const plan = new URLSearchParams(location.search).get("plan");
@@ -138,7 +146,9 @@
       e.preventDefault();
       const d = new FormData(form);
       const name = d.get("name"), email = d.get("email"), need = d.get("plan"), msg = d.get("message");
-      if (e.submitter && e.submitter.value === "email") {
+      const channel = e.submitter && e.submitter.value === "email" ? "email" : "whatsapp";
+      saveToSheet({ name, email, need, message: msg, channel, page: location.href, website: d.get("website") || "" });
+      if (channel === "email") {
         const subject = `New project: ${need} — ${name}`;
         const body = `${msg}
 
